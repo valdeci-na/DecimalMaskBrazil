@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Decimal Mask Brazil</string>
+    <string name="_999_999_999">999.999,999</string>
+</resources>
