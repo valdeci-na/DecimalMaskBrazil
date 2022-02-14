@@ -6,26 +6,25 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.decimalmaskbrazil.databinding.ActivityMainBinding;
 
 import java.lang.ref.WeakReference;
 
 public class MainActivity extends AppCompatActivity {
 
-    private View viewRoot;
-    private EditText editText;
-    private EditText editTextNormal;
+    private ActivityMainBinding binder;
     private TextWatcherDecimalBrazil textWatcherDecimalBrazil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        viewRoot = getWindow().getDecorView();
+        binder = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binder.getRoot());
+
         setConfigure();
     }
 
@@ -36,13 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setConfigure() {
 
-        editText = viewRoot.findViewById(R.id.decimalNumber);
-        editTextNormal = viewRoot.findViewById(R.id.decimalQualquer);
-        textWatcherDecimalBrazil = new TextWatcherDecimalBrazil(new WeakReference<>(editText), 4);
-        editText.addTextChangedListener(textWatcherDecimalBrazil);
+        textWatcherDecimalBrazil = new TextWatcherDecimalBrazil(new WeakReference<>( binder.decimalNumber), 4);
+        binder.decimalNumber.addTextChangedListener(textWatcherDecimalBrazil);
 
-        editTextNormal.setHint("n° casas decimais (máx #)".replace("#", DecimalBrazilUtils.getStringMaxHouse()));
-        editTextNormal.addTextChangedListener(new TextWatcher() {
+        binder.decimalQualquer.setHint("n° casas decimais (máx #)".replace("#", DecimalBrazilUtils.getStringMaxHouse()));
+        binder.decimalQualquer.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -61,18 +58,18 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     } else if (s.toString().isEmpty()) {
                         textWatcherDecimalBrazil.setHouse(0);
-                        editText.setText(editText.getText());
+                        binder.decimalNumber.setText( binder.decimalNumber.getText());
                     } else {
                         int valueNumber = DecimalBrazilUtils.getTextNumber(s.toString());
                         String textNumber = Integer.toString(valueNumber);
 
-                        editTextNormal.removeTextChangedListener(this);
-                        editTextNormal.setText(textNumber);
-                        editTextNormal.addTextChangedListener(this);
-                        editTextNormal.setSelection(textNumber.length());
+                        binder.decimalQualquer.removeTextChangedListener(this);
+                        binder.decimalQualquer.setText(textNumber);
+                        binder.decimalQualquer.addTextChangedListener(this);
+                        binder.decimalQualquer.setSelection(textNumber.length());
 
                         textWatcherDecimalBrazil.setHouse(valueNumber);
-                        editText.setText(editText.getText());
+                        binder.decimalNumber.setText( binder.decimalNumber.getText());
                     }
                 });
             }
