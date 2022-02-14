@@ -3,6 +3,7 @@ package com.example.decimalmaskbrazil;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
 import android.widget.EditText;
@@ -85,8 +86,8 @@ public class TextWatcherDecimalBrazil implements TextWatcher, DecimalMaskBrazilI
 
                 if (!lastComma) text = formatNumber(originalText, text);
 
-                if(text.length() > MAX_LENGTH){
-                    text = text.substring(0, MAX_LENGTH);
+                if(text.length() > getMaxLength()){
+                    text = text.substring(0, getMaxLength());
                     text = getStringDecimalNumber(text);
                 }
                 setEditText(text, false, hasHouse && lastComma);
@@ -158,5 +159,17 @@ public class TextWatcherDecimalBrazil implements TextWatcher, DecimalMaskBrazilI
 
         BigDecimal number = new BigDecimal(convertForNumberDefault(text));
         return decimalFormat.format(number);
+    }
+
+    private int getMaxLength(){
+
+        if( editTextWeakReference == null || editTextWeakReference.get() == null || editTextWeakReference.get().getText() == null ) return 0;
+        for (InputFilter filter : editTextWeakReference.get().getFilters()) {
+            if (filter instanceof InputFilter.LengthFilter) {
+                return ((InputFilter.LengthFilter) filter).getMax();
+            }
+        }
+
+        return 0;
     }
 }

@@ -9,5 +9,4 @@ public interface DecimalMaskBrazilInterface {
     char CHAR_GROUPING_SEPARATOR = '.';
     char CHAR_DECIMAL_SEPARATOR = ',';
     int MAX_HOUSE = 8;
-    int MAX_LENGTH = 13;
 }
