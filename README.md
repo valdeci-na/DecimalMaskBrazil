@@ -2,7 +2,7 @@
 
 > Status: Desenvolvimento
 
-### Biblioteca de formatação de números em editTexts para o padrão decimal brasileiro.  
+### Biblioteca de formatação de números em EditTexts para o padrão decimal brasileiro.  
 
 <table>
   <tr>
