@@ -3,7 +3,7 @@
 > Status: Desenvolvimento
 
 ### Biblioteca de formatação de números em EditTexts para o padrão decimal brasileiro.  
-![link text itself:](http://www.reddit.com)
+![link text itself](https://app.usebubbles.com/jB5N3kPNFUH73XtUsFFW11/comments-on-linuxuprising-com)
 
 <table>
   <tr>
