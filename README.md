@@ -13,6 +13,6 @@
    <tr>
     <td>Java</td>
     <td>8</td>
-     <td>26</td>
+     <td>23</td>
   </tr>
 </table>
