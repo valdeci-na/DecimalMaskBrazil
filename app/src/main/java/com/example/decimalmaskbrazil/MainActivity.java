@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setConfigure() {
 
-        textWatcherDecimalBrazil = new TextWatcherDecimalBrazil(new WeakReference<>( binder.decimalNumber), 4);
+        textWatcherDecimalBrazil = new TextWatcherDecimalBrazil(new WeakReference<>( binder.decimalNumber), 0);
         binder.decimalNumber.addTextChangedListener(textWatcherDecimalBrazil);
 
         binder.decimalQualquer.setHint("n° casas decimais (máx #)".replace("#", DecimalBrazilUtils.getStringMaxHouse()));
